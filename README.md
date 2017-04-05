@@ -14,9 +14,21 @@ should be able to infer the results of above executed test case as well.
 Operator need not write logic / programs to do so. Operator might use some scripting 
 or binary commands to achieve her objective.
 
-## mtest design concepts
+## Simple yet effective mtest
 
-### Building Blocks
+> Simplicity is the ultimate sophistication - Leonardo da Vinci
+
+To achieve this, we shall try to adhere to some design concepts. We are calling
+it by a name called `mtool`. `mtool` currently consists of design thoughts only.
+In future, we might put `mtool` concepts in `openebs` repository. The trials
+of `mtool` concepts will be done in `elves` repository.
+
+> NOTE: The current code base available in this repo might be removed altogether
+to accomodate `mtool`'s concepts.
+
+## mtool design concepts
+
+### Intent
 
 - Use a tool that can express the intent of the test case in a yaml file.
 - Use profiles that can feed common/default data to a test case:
@@ -30,13 +42,12 @@ or binary commands to achieve her objective.
 
 - Use a tool that can compose these test cases & expose them as a CLI
   - This CLI can be packaged & distributed with proper release tags
-  - Refer [ahoy](https://github.com/ahoy-cli) for details
+  - e.g. `mtest` can be a packaged distribution which derives all its design principles from `mtool`.
 
 ### Over HTTP
 
 - Use a tool that can expose the CLI over HTTP
-  - Refer [webhook](https://github.com/adnanh/webhook) for details
 
 ### Over SLACK
 
-- Create a SLACK plugin that can accept mtest commands
+- Create a SLACK plugin that can accept CLI commands
