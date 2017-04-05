@@ -16,7 +16,7 @@ or binary commands to achieve her objective.
 
 ## mtest design concepts
 
-### Building Block
+### Building Blocks
 
 - Use a tool that can express the intent of the test case in a yaml file.
 - Use profiles that can feed common/default data to a test case:
@@ -36,3 +36,7 @@ or binary commands to achieve her objective.
 
 - Use a tool that can expose the CLI over HTTP
   - Refer [webhook](https://github.com/adnanh/webhook) for details
+
+### Over SLACK
+
+- Create a SLACK plugin that can accept mtest commands
