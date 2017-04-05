@@ -1,6 +1,6 @@
 ## Introduction
 
-Intent is one of the core mtest design concepts.
+Intent is one of the core mtool design concepts.
 
 ## Intent
 

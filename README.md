@@ -30,24 +30,18 @@ to accomodate `mtool`'s concepts.
 
 ### Intent
 
-- Use a tool that can express the intent of the test case in a yaml file.
-- Use profiles that can feed common/default data to a test case:
-  - These profiles can in turn be expressed in yaml file(s)
-  - These profiles should be able to express the entire infrastructure's defaults
-- In case some amount of programming is required:
-  - It should be delegated to existing libraries
-  - Alternatively, new utility libraries can be built to solve this purpose
+Express the intent of the test case in a yaml file. [details](design/intent.md)
 
 ### CLI
 
 - Use a tool that can compose these test cases & expose them as a CLI
-  - This CLI can be packaged & distributed with proper release tags
+  - This CLI can be packaged & released
   - e.g. `mtest` can be a packaged distribution which derives all its design principles from `mtool`.
 
 ### Over HTTP
 
-- Use a tool that can expose the CLI over HTTP
+- Expose the CLI over HTTP
 
 ### Over SLACK
 
-- Create a SLACK plugin that can accept CLI commands
+- SLACK plugin that accepts above CLI commands
