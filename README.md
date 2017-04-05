@@ -30,7 +30,7 @@ to accomodate `mtool`'s concepts.
 
 ### Intent
 
-Express the intent of the test case in a yaml file. [details](design/intent.md)
+Express the [intent](design/intent.md) of the test case in a yaml file.
 
 ### CLI
 
