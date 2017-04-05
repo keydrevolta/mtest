@@ -19,29 +19,4 @@ or binary commands to achieve her objective.
 > Simplicity is the ultimate sophistication - Leonardo da Vinci
 
 To achieve this, we shall try to adhere to some design concepts. We are calling
-it by a name called `mtool`. `mtool` currently consists of design thoughts only.
-In future, we might put `mtool` concepts in `openebs` repository. The trials
-of `mtool` concepts will be done in `elves` repository.
-
-> NOTE: The current code base available in this repo might be removed altogether
-to accomodate `mtool`'s concepts.
-
-## mtool design concepts
-
-### Intent
-
-Express the [intent](design/intent.md) of the test case in a yaml file.
-
-### CLI
-
-- Use a tool that can compose these test cases & expose them as a CLI
-  - This CLI can be packaged & released
-  - e.g. `mtest` can be a packaged distribution which derives all its design principles from `mtool`.
-
-### Over HTTP
-
-- Expose the CLI over HTTP
-
-### Over SLACK
-
-- SLACK plugin that accepts above CLI commands
+it by a name called [mtool](https://github.com/openebs/elves/tree/master/mtool). 
