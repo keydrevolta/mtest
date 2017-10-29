@@ -200,6 +200,7 @@ func (s *TestSuite) TestParseSize(c *C) {
 
 	value, err = ParseSize("100K")
 	c.Assert(value, Equals, int64(102400))
+	c.Assert(err, IsNil)
 
 	value, err = ParseSize("0")
 	c.Assert(value, Equals, int64(0))
@@ -362,14 +363,14 @@ func (s *TestSuite) TestExtractNames(c *C) {
 	c.Assert(result[0], Equals, names[0])
 
 	files[0] = "prefix_.dd_xx.suffix"
-	result, err = ExtractNames(files, "prefix_", ".suffix")
+	_, err = ExtractNames(files, "prefix_", ".suffix")
 	c.Assert(err, ErrorMatches, "Invalid name.*")
 
 	files[0] = "prefix_-dd_xx.suffix"
-	result, err = ExtractNames(files, "prefix_", ".suffix")
+	_, err = ExtractNames(files, "prefix_", ".suffix")
 	c.Assert(err, ErrorMatches, "Invalid name.*")
 
 	files[0] = "prefix__dd_xx.suffix"
-	result, err = ExtractNames(files, "prefix_", ".suffix")
+	_, err = ExtractNames(files, "prefix_", ".suffix")
 	c.Assert(err, ErrorMatches, "Invalid name.*")
 }

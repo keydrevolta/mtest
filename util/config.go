@@ -24,10 +24,7 @@ func LoadConfig(fileName string, v interface{}) error {
 
 	defer file.Close()
 
-	if err = json.NewDecoder(file).Decode(v); err != nil {
-		return err
-	}
-	return nil
+	return json.NewDecoder(file).Decode(v)
 }
 
 func SaveConfig(fileName string, v interface{}) error {
@@ -50,11 +47,7 @@ func SaveConfig(fileName string, v interface{}) error {
 		}
 	}
 
-	if err := os.Rename(tmpFileName, fileName); err != nil {
-		return err
-	}
-
-	return nil
+	return os.Rename(tmpFileName, fileName)
 }
 
 func ConfigExists(fileName string) bool {
@@ -63,10 +56,8 @@ func ConfigExists(fileName string) bool {
 }
 
 func RemoveConfig(fileName string) error {
-	if _, err := Execute("rm", []string{"-f", fileName}); err != nil {
-		return err
-	}
-	return nil
+	_, err := Execute("rm", []string{"-f", fileName})
+	return err
 }
 
 func ListConfigIDs(root, prefix, suffix string) ([]string, error) {

@@ -91,10 +91,7 @@ func (p *Parallel) SetParallelism(forks int) {
 
 // IsParallel returns if the no of forks is greater than 0
 func (p *Parallel) IsParallel() bool {
-	if p.forks > 0 {
-		return true
-	}
-	return false
+	return (p.forks > 0)
 }
 
 // Blueprint to create Mtest structure.

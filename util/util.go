@@ -121,17 +121,13 @@ func GetFileChecksum(filePath string) (string, error) {
 }
 
 func CompressFile(filePath string) error {
-	if _, err := Execute("gzip", []string{filePath}); err != nil {
-		return err
-	}
-	return nil
+	_, err := Execute("gzip", []string{filePath})
+	return err
 }
 
 func DecompressFile(filePath string) error {
-	if _, err := Execute("gunzip", []string{filePath}); err != nil {
-		return err
-	}
-	return nil
+	_, err := Execute("gunzip", []string{filePath})
+	return err
 }
 
 func CompressDir(sourceDir, targetFile string) error {
@@ -142,10 +138,8 @@ func CompressDir(sourceDir, targetFile string) error {
 	if _, err := Execute("gzip", []string{tmpFile}); err != nil {
 		return err
 	}
-	if _, err := Execute("mv", []string{"-f", tmpFile + ".gz", targetFile}); err != nil {
-		return err
-	}
-	return nil
+	_, err := Execute("mv", []string{"-f", tmpFile + ".gz", targetFile})
+	return err
 }
 
 // If sourceFile is inside targetDir, it would be deleted automatically
@@ -170,10 +164,8 @@ func DecompressDir(sourceFile, targetDir string) error {
 }
 
 func Copy(src, dst string) error {
-	if _, err := Execute("cp", []string{src, dst}); err != nil {
-		return err
-	}
-	return nil
+	_, err := Execute("cp", []string{src, dst})
+	return err
 }
 
 func AttachLoopbackDevice(file string, readonly bool) (string, error) {
@@ -202,10 +194,8 @@ func DetachLoopbackDevice(file, dev string) error {
 	if !strings.HasSuffix(out, suffix) {
 		return fmt.Errorf("Unmatched source file, output %v, suffix %v", out, suffix)
 	}
-	if _, err := Execute("losetup", []string{"-d", dev}); err != nil {
-		return err
-	}
-	return nil
+	_, err = Execute("losetup", []string{"-d", dev})
+	return err
 }
 
 func ListLoopbackDevice(file string) ([]string, error) {
@@ -378,7 +368,7 @@ func ValidNetworkAddr(addr string) bool {
 	if err != nil {
 		return false
 	}
-	if ips == nil || len(ips) == 0 {
+	if len(ips) == 0 {
 		return false
 	}
 	return true

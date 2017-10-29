@@ -102,10 +102,10 @@ func (s *TestSuite) TestSaveLoadObject(c *C) {
 	c.Assert(ops, DeepEquals, dev)
 
 	r := &RandomStruct{}
-	ops, err = getObjectOps(*r)
+	_, err = getObjectOps(*r)
 	c.Assert(err, ErrorMatches, "BUG: Non-pointer was passed in")
 
-	ops, err = getObjectOps(r)
+	_, err = getObjectOps(r)
 	c.Assert(err, ErrorMatches, "BUG: util.RandomStruct doesn't implement.*")
 
 	// test without ID
@@ -138,6 +138,7 @@ func (s *TestSuite) TestSaveLoadObject(c *C) {
 	// test with ID
 	exists, err = ObjectExists(&Volume{})
 	c.Assert(err, ErrorMatches, "BUG: Invalid empty volume ID")
+	c.Assert(exists, Equals, false)
 
 	vol := &Volume{}
 	err = ObjectLoad(vol)

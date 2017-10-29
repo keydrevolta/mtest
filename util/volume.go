@@ -197,10 +197,7 @@ func callMkdirIfNotExists(dirName string) error {
 	cmdArgs := []string{"-p", dirName}
 	cmdName, cmdArgs = updateMountNamespace(cmdName, cmdArgs)
 	_, err := Execute(cmdName, cmdArgs)
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
 func callMount(opts, args []string) (string, error) {
@@ -219,10 +216,8 @@ func callUmount(args []string) error {
 	cmdName := UMOUNT_BINARY
 	cmdArgs := args
 	cmdName, cmdArgs = updateMountNamespace(cmdName, cmdArgs)
-	if _, err := Execute(cmdName, cmdArgs); err != nil {
-		return err
-	}
-	return nil
+	_, err := Execute(cmdName, cmdArgs)
+	return err
 }
 
 func InitMountNamespace(fd string) error {
@@ -323,10 +318,8 @@ func VolumeMountPointDirectoryCreate(v interface{}, dirName string) error {
 	cmdName := "mkdir"
 	cmdArgs := []string{"-p", path}
 	cmdName, cmdArgs = updateMountNamespace(cmdName, cmdArgs)
-	if _, err := Execute(cmdName, cmdArgs); err != nil {
-		return err
-	}
-	return nil
+	_, err = Execute(cmdName, cmdArgs)
+	return err
 }
 
 func VolumeMountPointDirectoryRemove(v interface{}, dirName string) error {
@@ -343,10 +336,8 @@ func VolumeMountPointDirectoryRemove(v interface{}, dirName string) error {
 	cmdName := "rm"
 	cmdArgs := []string{"-rf", path}
 	cmdName, cmdArgs = updateMountNamespace(cmdName, cmdArgs)
-	if _, err := Execute(cmdName, cmdArgs); err != nil {
-		return err
-	}
-	return nil
+	_, err = Execute(cmdName, cmdArgs)
+	return err
 }
 
 func createImage(file string, size int64) error {
@@ -357,10 +348,8 @@ func createImage(file string, size int64) error {
 		file,
 	}
 	cmdName, cmdArgs = updateMountNamespace(cmdName, cmdArgs)
-	if _, err := Execute(cmdName, cmdArgs); err != nil {
-		return err
-	}
-	return nil
+	_, err := Execute(cmdName, cmdArgs)
+	return err
 }
 
 func prepareImage(dir string, size int64) error {
@@ -380,11 +369,7 @@ func prepareImage(dir string, size int64) error {
 		}
 		return nil
 	}
-
-	if err := createImage(file, size); err != nil {
-		return err
-	}
-	return nil
+	return createImage(file, size)
 }
 
 func MountPointPrepareImageFile(mp string, size int64) error {
@@ -395,10 +380,7 @@ func MountPointPrepareImageFile(mp string, size int64) error {
 	if fileType != FILE_TYPE_DIRECTORY {
 		return fmt.Errorf("Cannot prepare image for invalid file with type '%v' at %v", fileType, mp)
 	}
-	if err := prepareImage(mp, size); err != nil {
-		return err
-	}
-	return nil
+	return prepareImage(mp, size)
 }
 
 func makeBlockDeviceNode(file, major, minor string) error {
@@ -411,10 +393,8 @@ func makeBlockDeviceNode(file, major, minor string) error {
 		minor,
 	}
 	cmdName, cmdArgs = updateMountNamespace(cmdName, cmdArgs)
-	if _, err := Execute(cmdName, cmdArgs); err != nil {
-		return err
-	}
-	return nil
+	_, err := Execute(cmdName, cmdArgs)
+	return err
 }
 
 func MountPointRemoveFile(file string) error {
@@ -424,10 +404,8 @@ func MountPointRemoveFile(file string) error {
 		file,
 	}
 	cmdName, cmdArgs = updateMountNamespace(cmdName, cmdArgs)
-	if _, err := Execute(cmdName, cmdArgs); err != nil {
-		return err
-	}
-	return nil
+	_, err := Execute(cmdName, cmdArgs)
+	return err
 }
 
 func MountPointPrepareBlockDevice(mp string, dev string) error {
@@ -452,8 +430,5 @@ func MountPointPrepareBlockDevice(mp string, dev string) error {
 
 	major := strings.Split(mm, " ")[0]
 	minor := strings.Split(mm, " ")[1]
-	if err := makeBlockDeviceNode(file, major, minor); err != nil {
-		return err
-	}
-	return nil
+	return makeBlockDeviceNode(file, major, minor)
 }

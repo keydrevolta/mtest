@@ -96,10 +96,9 @@ func (s *TestSuite) TestVolumeHelperWithNamespace(c *C) {
 }
 
 func testVolumeVMSupport(r *HelperVolume, s *TestSuite, c *C) {
-	var err error
 
 	// Test image file
-	err = MountPointPrepareImageFile(r.MountPoint, imageSize)
+	err := MountPointPrepareImageFile(r.MountPoint, imageSize)
 	c.Assert(err, IsNil)
 
 	exists := VolumeMountPointFileExists(r, IMAGE_FILE_NAME, FILE_TYPE_REGULAR)
@@ -113,6 +112,7 @@ func testVolumeVMSupport(r *HelperVolume, s *TestSuite, c *C) {
 	// Test image device
 	devFile := filepath.Join(testRoot, devImage)
 	err = s.createFile(devFile, imageSize)
+	c.Assert(err, IsNil)
 
 	originDev, err := AttachLoopbackDevice(devFile, false)
 	c.Assert(err, IsNil)
